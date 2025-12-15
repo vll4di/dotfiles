@@ -1,0 +1,26 @@
+General Use
+open terminal = mod+shift+enter
+close terminal = mod+shiftt+x
+zoom in/out inside the terminal = mod+shift+ up or down arrows
+shift between ttys = mod+ number corresponding to the tty
+move the current window to another tty = shift+mod+ number corresponding to the tty
+
+vim
+i to enter insert mode
+/ to search by word
+:q to quit
+:w to write
+:wq to write and quit
+:wq! to force write and quit
+
+git 
+config add = git add
+config commit -m "Example" = git commit -m "Example"
+config push = git push
+
+
+pacman
+install a package = pacman -S
+remove a package = pacman -R
+synchronize databases = pacman -Sy
+synchronize and upgrade the whole system = pacman -Syu 
