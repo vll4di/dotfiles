@@ -1,0 +1,10 @@
+Current issues with my arch install yet to solve:
+
+
+[Issue]Resolution inside the vm is lower than 1080p even when right ctrl+f mode enabled
+	(Fixed by adding the xrandr line to ~/.xinitrc because the system uses startx)
+
+
+
+[Issue]Del key not working as intended
+	(Fixed for the terminal by adding "tput smkx" at the end of ~/.bashrc and fixed for vim by adding "set backspace=indent,eol,start") at the end of      ~/.vimrc.
