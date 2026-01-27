@@ -61,7 +61,24 @@ static const char unknown_str[] = "n/a";
  * wifi_perc           WiFi signal in percent          interface name (wlan0)
  * wifi_essid          WiFi ESSID                      interface name (wlan0)
  */
+
 static const struct arg args[] = {
-	/* function format          argument */
-	{ datetime, "%s",           "%F %T" },
+	/* function     format              argument */
+
+	/* 1. CPU Usage */
+	{ cpu_perc,     "[CPU %s%%] ",      NULL },
+
+	/* 2. RAM Usage */
+	{ ram_perc,     "[RAM %s%%] ",      NULL },
+
+	/* 3. Dynamic Audio Icon */
+	{ run_command,  "%s ",              "amixer sget Master | awk -F\"[][]\" '/%/ { \
+	                                       gsub(/%/, \"\", $2); \
+	                                       if ($6 == \"off\") { print \"󰝟\" } \
+	                                       else if ($2 < 50) { print \"\" } \
+	                                       else { print \"\" } \
+	                                     }' | head -n1" },
+
+	/* 4. Date and 24h Time */
+	{ datetime,     "[%s]",             "%d--%m--%Y %H:%M" },
 };
