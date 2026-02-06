@@ -6,7 +6,7 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const unsigned int refreshrate = 60;     /* ADDED: Set this to your monitor Hz (e.g., 60, 144) */
-static const char *fonts[]          = { "FiraCode Nerd Font Mono:style=Medium:size=10", "monospace:size=10" };
+static const char *fonts[]          = { "FiraCode Nerd Font Mono:style=Medium:size=10", "monospace:size=10", "Noto Color Emoji:pixelsize=12:antialias=true:autohint=true" };
 static const char dmenufont[]       = "monospace:size=10";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
@@ -63,15 +63,25 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", NULL };
 
 /* Volume commands */
-static const char *upvol[]   = { "/usr/bin/amixer", "set", "Master", "5%+",     NULL };
-static const char *downvol[] = { "/usr/bin/amixer", "set", "Master", "5%-",     NULL };
-static const char *mutevol[] = { "/usr/bin/amixer", "set", "Master", "toggle",  NULL };
+static const char *mutecmd[] = { "pactl", "set-sink-mute",   "@DEFAULT_SINK@", "toggle", NULL };
+static const char *volup[]   = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%",    NULL };
+static const char *voldown[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%",    NULL };
+
+/* Screenshot and copy to clipboard */
+static const char *screenshotcmd[] = { "/bin/sh", "-c", "scrot /home/vll4di/Images/Screenshots/%Y-%m-%d-%T-screenshot.png -e 'xclip -selection clipboard -t image/png -i $f'", NULL };
+
+/* Media control command */
+static const char *playpause[] = { "playerctl", "play-pause", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key                          function        argument */
-	{ Mod1Mask,                     XK_F11,			     spawn,          {.v = downvol } },
-	{ Mod1Mask,                     XK_F10,			     spawn,          {.v = mutevol } },
-	{ Mod1Mask,                     XK_F12,			     spawn,          {.v = upvol   } },
+/* modifier             key        function        argument */
+
+	{ 0,                   	        XK_Pause, 		     spawn,          {.v = playpause } },
+	{ MODKEY,              		XK_F10,   		     spawn,          {.v = mutecmd } },
+	{ MODKEY,              		XK_F11,  		     spawn,          {.v = voldown } },
+	{ MODKEY,             		XK_F12,   		     spawn,          {.v = volup   } },
+	{ 0,				XK_Print,		     spawn,	     {.v = screenshotcmd } },
 	{ MODKEY,                       XK_p,                        spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return,                   spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,                        togglebar,      {0} },

@@ -10,3 +10,4 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 PS1='[\u@\h \W]\$ '
 tput smkx
 alias scrot='scrot "$HOME/Images/Screenshots/%Y-%m-%d_%H%M%S.png"'
+export PATH="$HOME/.local/bin:$PATH"
