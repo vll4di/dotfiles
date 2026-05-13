@@ -1,15 +1,5 @@
 # dotfiles
 
-<p align="center">
-  <a href="https://artixlinux.org">
-    <img src="https://artixlinux.org/img/artix-logo.png" height="80" alt="Artix Linux"/>
-  </a>
-  &nbsp;&nbsp;&nbsp;
-  <a href="https://suckless.org">
-    <img src="https://suckless.org/logo.svg" height="80" alt="Suckless"/>
-  </a>
-</p>
-
 Personal builds of [suckless](https://suckless.org/) software used on my **Artix Linux** setup.
 
 ## Programs
